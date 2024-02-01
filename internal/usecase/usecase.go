@@ -1,17 +1,25 @@
 package usecase
 
-import "github.com/vmanukyan99/test-weather-api/internal/entity"
+import (
+	"github.com/vmanukyan99/test-weather-api/internal/entity/dto"
+)
+
+type Repository interface {
+	GetCoordinates(location string) (latitude float64, longitude float64, err error)
+}
 
 type WeatherAPI interface {
-	GetWeather(location, date string) (*entity.Weather, error)
+	GetWeather(input *dto.GetWeatherRequest) (*dto.GetWeatherResponse, error)
 }
 
 type UseCase struct {
+	repository Repository
 	weatherAPI WeatherAPI
 }
 
-func New(w WeatherAPI) *UseCase {
+func New(r Repository, w WeatherAPI) *UseCase {
 	return &UseCase{
+		repository: r,
 		weatherAPI: w,
 	}
 }
