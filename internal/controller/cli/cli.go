@@ -2,8 +2,9 @@ package cli
 
 import (
 	"fmt"
-	"github.com/vmanukyan99/test-weather-api/internal/usecase"
 	"log"
+
+	"github.com/vmanukyan99/test-weather-api/internal/usecase"
 )
 
 type Cli struct {
@@ -18,12 +19,12 @@ func New(uc *usecase.UseCase) *Cli {
 
 func (c *Cli) Start() {
 	for {
-		weather, err := c.getWeather()
+		info, err := c.getWeather()
 		if err != nil {
 			log.Println(err)
 			continue
 		}
 
-		fmt.Println(weather)
+		fmt.Println(info)
 	}
 }
