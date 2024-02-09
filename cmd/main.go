@@ -10,9 +10,10 @@ import (
 func main() {
 	r := repository.New()
 
-	w := weatherapi.New("https://api.open-meteo.com/v1")
+	waf := weatherapi.NewForecast("https://api.open-meteo.com/v1")
+	waa := weatherapi.NewArchive("https://archive-api.open-meteo.com/v1")
 
-	uc := usecase.New(r, w)
+	uc := usecase.New(r, waf, waa)
 
 	c := cli.New(uc)
 
