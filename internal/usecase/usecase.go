@@ -5,7 +5,7 @@ import (
 )
 
 type Repository interface {
-	GetCoordinates(location string) (latitude float64, longitude float64, err error)
+	GetCoordinates(country, city string) (latitude float64, longitude float64, err error)
 }
 
 type WeatherAPI interface {

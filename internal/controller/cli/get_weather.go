@@ -27,7 +27,7 @@ func (c *Cli) getWeather() (*entity.Weather, error) {
 		return nil, fmt.Errorf("time.Parse: %w", err)
 	}
 
-	weather, err := c.uc.GetWeather(locationInput, date)
+	weather, err := c.uc.GetWeather(country, city, date)
 	if err != nil {
 		return nil, fmt.Errorf("c.uc.GetWeather: %w", err)
 	}

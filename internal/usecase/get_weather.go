@@ -7,8 +7,8 @@ import (
 	"time"
 )
 
-func (uc *UseCase) GetWeather(location string, date time.Time) (*entity.Weather, error) {
-	latitude, longitude, err := uc.repository.GetCoordinates(location)
+func (uc *UseCase) GetWeather(country, city string, date time.Time) (*entity.Weather, error) {
+	latitude, longitude, err := uc.repository.GetCoordinates(country, city)
 	if err != nil {
 		return nil, fmt.Errorf("uc.repository.GetCoordinates: %w", err)
 	}
