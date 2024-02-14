@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/vmanukyan99/test-weather-api/internal/entity/dto"
-	"log"
 	"net/http"
 	"net/url"
 	"strconv"
@@ -15,14 +14,8 @@ func (w *WeatherAPI) GetWeather(input *dto.GetWeatherRequest) (*dto.GetWeatherRe
 	latitude := strconv.FormatFloat(input.Latitude, 'g', -1, 32)
 	longitude := strconv.FormatFloat(input.Longitude, 'g', -1, 32)
 
-	log.Println(latitude)
-	log.Println(longitude)
-
 	startDate := input.StartDate.Format(time.DateOnly)
 	endDate := input.EndDate.Format(time.DateOnly)
-
-	log.Println(startDate)
-	log.Println(endDate)
 
 	req, err := http.NewRequest(http.MethodGet, w.host+"/forecast", http.NoBody)
 	if err != nil {
@@ -37,8 +30,6 @@ func (w *WeatherAPI) GetWeather(input *dto.GetWeatherRequest) (*dto.GetWeatherRe
 	params.Add("hourly", "temperature_2m")
 
 	req.URL.RawQuery = params.Encode()
-
-	log.Println(req.URL.String())
 
 	resp, err := w.client.Do(req)
 	if err != nil {
