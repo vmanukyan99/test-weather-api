@@ -14,12 +14,10 @@ type WeatherAPI interface {
 
 type UseCase struct {
 	repository Repository
-	weatherAPI WeatherAPI
 }
 
-func New(r Repository, w WeatherAPI) *UseCase {
+func New(r Repository) *UseCase {
 	return &UseCase{
 		repository: r,
-		weatherAPI: w,
 	}
 }

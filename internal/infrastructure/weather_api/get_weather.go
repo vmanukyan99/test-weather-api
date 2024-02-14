@@ -24,7 +24,7 @@ func (w *WeatherAPI) GetWeather(input *dto.GetWeatherRequest) (*dto.GetWeatherRe
 	log.Println(startDate)
 	log.Println(endDate)
 
-	req, err := http.NewRequest(http.MethodGet, w.host+"/forecast", http.NoBody)
+	req, err := http.NewRequest(http.MethodGet, w.host, http.NoBody)
 	if err != nil {
 		return nil, fmt.Errorf("http.NewRequest: %w", err)
 	}
