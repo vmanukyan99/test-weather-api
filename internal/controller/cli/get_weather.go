@@ -2,19 +2,26 @@ package cli
 
 import (
 	"fmt"
-	"github.com/vmanukyan99/test-weather-api/internal/entity"
 	"time"
+
+	"github.com/vmanukyan99/test-weather-api/internal/entity"
 )
 
 func (c *Cli) getWeather() (*entity.Weather, error) {
 	var (
-		locationInput string
-		dateInput     string
+		country   string
+		city      string
+		dateInput string
 	)
 
-	_, err := fmt.Scanln(&locationInput)
+	_, err := fmt.Scanln(&country)
 	if err != nil {
-		return nil, fmt.Errorf("fmt.Scanln(&location): %w", err)
+		return nil, fmt.Errorf("fmt.Scanln(&country): %w", err)
+	}
+
+	_, err = fmt.Scanln(&city)
+	if err != nil {
+		return nil, fmt.Errorf("fmt.Scanln(&city): %w", err)
 	}
 
 	_, err = fmt.Scanln(&dateInput)
