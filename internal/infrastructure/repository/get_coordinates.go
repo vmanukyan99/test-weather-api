@@ -2,6 +2,7 @@ package repository
 
 import (
 	"fmt"
+
 	"github.com/doug-martin/goqu/v9"
 	"github.com/jackc/pgx/pgtype"
 )

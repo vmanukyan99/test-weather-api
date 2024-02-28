@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+
+  pg1:
+    image: postgres
+    environment:
+      - POSTGRES_USER=$DB_USER
+      - POSTGRES_PASSWORD=$DB_PASSWORD
+      - POSTGRES_DB=$DB_DATABASE
+    ports:
+      - "6666:5432"
+    networks:
+      - network1
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  # go1:
+  #   build:
+  #     context: .
+  #   environment:
+  #     - DB_HOST=pg1
+  #     - DB_PORT=5432
+  #     - DB_USER
+  #     - DB_PASSWORD
+  #     - DB_DATABASE
+  #   ports:
+  #     - "7777:80"
+  #   networks:
+  #     - network1
+  #   volumes:
+  #     - ./cmd:/app/cmd
+  #     - ./config:/app/config
+  #     - ./internal:/app/internal
+  #   depends_on:
+  #     - pg1
+
+networks:
+  network1:

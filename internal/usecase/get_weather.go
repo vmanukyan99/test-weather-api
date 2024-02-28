@@ -2,9 +2,10 @@ package usecase
 
 import (
 	"fmt"
+	"time"
+
 	"github.com/vmanukyan99/test-weather-api/internal/entity"
 	"github.com/vmanukyan99/test-weather-api/internal/entity/dto"
-	"time"
 )
 
 func (uc *UseCase) GetWeather(country, city string, date time.Time) (*entity.Weather, error) {
@@ -25,7 +26,11 @@ func (uc *UseCase) GetWeather(country, city string, date time.Time) (*entity.Wea
 		return nil, fmt.Errorf("uc.weatherAPI.GetWeather: %w", err)
 	}
 
-	weather := entity.NewWeather(location, date, output.Hourly.Temperature2m)
+	weather := entity.NewWeather(
+		fmt.Sprintf("%s %s", country, city),
+		date,
+		output.Hourly.Temperature2m,
+	)
 
 	return weather, nil
 }

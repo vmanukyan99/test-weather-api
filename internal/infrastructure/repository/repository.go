@@ -2,6 +2,7 @@ package repository
 
 import (
 	"fmt"
+
 	"github.com/jackc/pgx"
 	"github.com/vmanukyan99/test-weather-api/config"
 )
@@ -13,7 +14,7 @@ type Repository struct {
 func New(c config.DataBase) (*Repository, error) {
 	conf := pgx.ConnConfig{
 		Host:     c.Host,
-		Port:     5432,
+		Port:     c.Post,
 		User:     c.User,
 		Password: c.Password,
 		Database: c.Database,
